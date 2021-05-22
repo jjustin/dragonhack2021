@@ -16,6 +16,7 @@ export function getData(callback) {
 export function getAggregateData(callback) {
   readRemoteFile(SHEETS_CSV_AGGREGATE, {
     complete: callback,
+    download: true,
   });
 }
 
