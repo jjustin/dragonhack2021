@@ -13,7 +13,6 @@ import {
 
 function App() {
   const { Content, Header } = Layout;
-
   return (
     <Router>
       <Layout className="site-layout">
