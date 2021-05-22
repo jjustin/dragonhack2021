@@ -2,7 +2,7 @@ import "./stats.css";
 import VaxColumn from "../components/VaxColumn";
 import React, { useState } from "react";
 import getRadarData from "../services/radarData";
-import getDualColumnData from "../services/dualColumnData";
+import getDualColumnData, { getFeverData } from "../services/dualColumnData";
 
 const vaccines = [
   "Janssen / Johnson & Johnson",
@@ -44,6 +44,20 @@ export default function Stats() {
     getDualColumnData(vacc3, setData3dc);
   }
 
+  // Fever data
+  const [data1fev, setData1fev] = useState(undefined);
+  if (data1fev == undefined) {
+    getFeverData(vacc1, setData1fev);
+  }
+  const [data2fev, setData2fev] = useState(undefined);
+  if (data2fev == undefined) {
+    getFeverData(vacc2, setData2fev);
+  }
+  const [data3fev, setData3fev] = useState(undefined);
+  if (data3fev == undefined) {
+    getFeverData(vacc3, setData3fev);
+  }
+
   return (
     <div className="statsView">
       <VaxColumn
@@ -52,6 +66,7 @@ export default function Stats() {
         setVacc={setVacc1}
         dataDC={data1dc}
         dataRadar={data1radar}
+        dataFever={data1fev}
       />
       <VaxColumn
         vacc={vacc2}
@@ -59,6 +74,7 @@ export default function Stats() {
         setVacc={setVacc2}
         dataDC={data2dc}
         dataRadar={data2radar}
+        dataFever={data2fev}
       />
       <VaxColumn
         vacc={vacc3}
@@ -66,6 +82,7 @@ export default function Stats() {
         setVacc={setVacc3}
         dataDC={data3dc}
         dataRadar={data3radar}
+        dataFever={data2fev}
       />
     </div>
   );

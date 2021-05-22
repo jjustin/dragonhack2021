@@ -26,6 +26,9 @@ export default function VaxColumn(props) {
         <DualBarChart data={props.dataDC} />
       </div>
       <div className="lineGraph">
+        <DualBarChart data={props.dataFever} />
+      </div>
+      <div className="lineGraph">
         <RadarCustom data={props.dataRadar} />
       </div>
     </div>
