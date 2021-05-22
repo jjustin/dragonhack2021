@@ -103,6 +103,6 @@ function arrsPercentsFor(sex) {
   if (sex == "male") {
     return [24, 26, 28, 30];
   } else if (sex == "all") {
-    return [24, 26, 28, 30, 34, 36, 38, 40];
+    return [60, 62, 64, 66];
   } else return [34, 36, 38, 40];
 }
