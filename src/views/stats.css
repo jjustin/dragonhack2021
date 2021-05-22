@@ -1,0 +1,17 @@
+.statsView {
+    height: 80%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.lineGraph {
+    height: 40%;
+    width: 40%;
+    float:left;
+}
+
+.radarGraph {
+    height: 40%;
+    width: 40%;
+    overflow: hidden;
+}
