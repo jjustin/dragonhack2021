@@ -24,11 +24,9 @@ export function getCounts(sex, cb) {
     var linesToCheck = arrsCountFor(sex);
     var resp = {};
     var data = res.data;
-    console.log(linesToCheck);
     for (var line of linesToCheck) {
       var vacc = data[line][1];
       if (!resp[vacc]) resp[vacc] = {};
-      console.log(JSON.stringify(resp["Moderna"]), line);
       for (var i in data[line].slice(2)) {
         var ix = parseInt(i) + 2;
         if (!resp[vacc][data[0][ix]]) {
@@ -51,32 +49,60 @@ function arrsCountFor(sex) {
 }
 
 export function getRatingAverage(sex, cb) {
-    getAggregateData((res) => {
-      var linesToCheck = arrsRatingAverageFor(sex);
-      var resp = {};
-      var data = res.data;
-      console.log(linesToCheck);
-      for (var line of linesToCheck) {
-        var vacc = data[line][1];
-        if (!resp[vacc]) resp[vacc] = {};
-        console.log(JSON.stringify(resp["Moderna"]), line);
-        for (var i in data[line].slice(2)) {
-          var ix = parseInt(i) + 2;
-          if (!resp[vacc][data[0][ix]]) {
-            resp[vacc][data[0][ix]] = 0;
-          }
-          resp[vacc][data[0][ix]] += parseFloat(data[line][ix]);
+  getAggregateData((res) => {
+    var linesToCheck = arrsRatingAverageFor(sex);
+    var resp = {};
+    var data = res.data;
+    console.log(linesToCheck);
+    for (var line of linesToCheck) {
+      var vacc = data[line][1];
+      if (!resp[vacc]) resp[vacc] = {};
+      console.log(JSON.stringify(resp["Moderna"]), line);
+      for (var i in data[line].slice(2)) {
+        var ix = parseInt(i) + 2;
+        if (!resp[vacc][data[0][ix]]) {
+          resp[vacc][data[0][ix]] = 0;
         }
+        resp[vacc][data[0][ix]] += parseFloat(data[line][ix]);
       }
-  
-      cb(resp);
-    });
-  }
+    }
 
-  function arrsRatingAverageFor(sex) {
-    if (sex == "male") {
-      return [45,47,49,51];
-    } else if (sex == "all") {
-      return [45, 47, 49, 51, 53, 55, 57, 59];
-    } else return [53, 55, 57, 59];
-  }
+    cb(resp);
+  });
+}
+
+function arrsRatingAverageFor(sex) {
+  if (sex == "male") {
+    return [45, 47, 49, 51];
+  } else if (sex == "all") {
+    return [45, 47, 49, 51, 53, 55, 57, 59];
+  } else return [53, 55, 57, 59];
+}
+export function getPercentage(sex, cb) {
+  getAggregateData((res) => {
+    var linesToCheck = arrsPercentsFor(sex);
+    var resp = {};
+    var data = res.data;
+    for (var line of linesToCheck) {
+      var vacc = data[line][1];
+      if (!resp[vacc]) resp[vacc] = {};
+      for (var i in data[line].slice(2)) {
+        var ix = parseInt(i) + 2;
+        if (!resp[vacc][data[0][ix]]) {
+          resp[vacc][data[0][ix]] = 0;
+        }
+        resp[vacc][data[0][ix]] += parseFloat(data[line][ix].replace(",", "."));
+      }
+    }
+
+    cb(resp);
+  });
+}
+
+function arrsPercentsFor(sex) {
+  if (sex == "male") {
+    return [24, 26, 28, 30];
+  } else if (sex == "all") {
+    return [24, 26, 28, 30, 34, 36, 38, 40];
+  } else return [34, 36, 38, 40];
+}
