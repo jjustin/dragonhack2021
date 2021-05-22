@@ -9,36 +9,8 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { getRatingAverage } from "../services/data";
 
-export default function DualBarChart({ vaccine }) {
-  const [data, setData] = useState(undefined);
-  if (data == undefined) {
-    getRatingAverage("male", (males) => {
-      getRatingAverage("female", (females) => {
-        var vacData = [];
-        const yesyes = [
-          "Chills",
-          "Headache",
-          "Nausea",
-          "Pain at Point",
-          "Fatigue",
-          "Body Aches",
-        ];
-        console.log("yesyes", yesyes);
-        for (const key of yesyes) {
-          vacData.push({
-            name: key,
-            M: males[vaccine][key],
-            F: females[vaccine][key],
-          });
-        }
-        setData(vacData);
-        console.log(vacData);
-      });
-    });
-  }
-
+export default function DualBarChart({ data }) {
   return (
     <ResponsiveContainer width="100%" height="100%">
       <BarChart

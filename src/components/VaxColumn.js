@@ -23,10 +23,10 @@ export default function VaxColumn(props) {
         </Button>
       </Dropdown>
       <div className="lineGraph">
-        <DualBarChart vaccine={props.vacc} />
+        <DualBarChart data={props.dataDC} />
       </div>
       <div className="lineGraph">
-        <RadarCustom vaccine={props.vacc} />
+        <RadarCustom data={props.dataRadar} />
       </div>
     </div>
   );
