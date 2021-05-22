@@ -1,6 +1,10 @@
 import { getRatingAverage } from "./data";
 
 export default function getDualColumnData(vaccine, setData) {
+  if (vaccine == undefined || vaccine == "Choose vaccine") {
+    return undefined;
+  }
+
   getRatingAverage("male", (males) => {
     getRatingAverage("female", (females) => {
       var vacData = [];
@@ -26,12 +30,13 @@ export default function getDualColumnData(vaccine, setData) {
 }
 
 export function getFeverData(vaccine, setData) {
+  if (vaccine == undefined || vaccine == "Choose vaccine") {
+    return undefined;
+  }
   getRatingAverage("male", (males) => {
     getRatingAverage("female", (females) => {
       var vacData = [];
-      const yesyes = [
-        "Fever"
-      ];
+      const yesyes = ["Fever"];
       for (const key of yesyes) {
         vacData.push({
           name: key,

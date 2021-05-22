@@ -7,6 +7,7 @@ import "./components.css";
 export default function VaxColumn(props) {
   function handleMenuClick(e) {
     props.setVacc(e.key);
+    console.log("clicked: ", e.key);
   }
 
   const menuItems = props.vaccines.map((v) => (

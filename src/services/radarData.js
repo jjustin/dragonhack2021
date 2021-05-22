@@ -1,6 +1,9 @@
 import { getCounts } from "./data";
 
 export default function getRadarData(vaccine, setData) {
+  if (vaccine == undefined || vaccine == "Choose vaccine") {
+    return undefined;
+  }
   getCounts("male", (males) => {
     getCounts("female", (females) => {
       var vacData = [];
