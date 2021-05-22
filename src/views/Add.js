@@ -1,8 +1,7 @@
-import { useEffect } from "react";
-
 export default function Add() {
   return (
     <iframe
+      title="survey"
       id="ss_widget_frame"
       allowfullscreen=""
       src="http://trivialgroupstudios.surveysparrow.com/widget/Vaccination-Side-Effects-Survey/tt-7979c9?"

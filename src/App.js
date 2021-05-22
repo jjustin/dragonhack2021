@@ -12,7 +12,7 @@ import {
 } from "@ant-design/icons";
 
 function App() {
-  const { Content, Footer, Header } = Layout;
+  const { Content, Header } = Layout;
 
   return (
     <Router>
