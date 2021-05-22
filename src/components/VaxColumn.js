@@ -1,4 +1,4 @@
-import LineGraph from "./LineGraph";
+import LineGraph from "./DualBarChart";
 import RadarCustom from "./RadarCustom";
 import { Menu, Dropdown, Button } from "antd";
 import { DownOutlined } from "@ant-design/icons";
@@ -26,7 +26,7 @@ export default function VaxColumn(props) {
         <LineGraph data={props.data} />
       </div>
       <div className="lineGraph">
-        <RadarCustom data={props.data} />
+        <RadarCustom vaccine={props.vacc} />
       </div>
     </div>
   );
