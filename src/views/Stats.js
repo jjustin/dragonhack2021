@@ -57,8 +57,8 @@ export default function Stats() {
         vacc={vacc2}
         vaccines={vaccines}
         setVacc={setVacc2}
-        dataDC={data1dc}
-        dataRadar={data1radar}
+        dataDC={data2dc}
+        dataRadar={data2radar}
       />
       <VaxColumn
         vacc={vacc3}
