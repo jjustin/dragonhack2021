@@ -1,0 +1,27 @@
+.me-form-question {
+  text-align: left;
+  margin-left: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.me-form-selector {
+  font-size: 20px;
+  margin-right: 30px;
+  margin-bottom: 30px;
+  padding: 5px;
+  cursor: pointer;
+  background-color: rgb(220, 220, 220);
+  border-radius: 10px;
+  width: 20%;
+  padding-left: 15px;
+  border: 1px solid black;
+  transition: 0.25s;
+}
+
+.me-form-selector:hover {
+  background-color: rgb(190, 190, 190);
+  transition: 0.5s;
+}

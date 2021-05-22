@@ -41,7 +41,7 @@ function App() {
           </Menu>
         </Header>
         <Layout className="site-layout">
-          <Content style={{}}>
+          <Content>
             <div
               className="site-layout-background"
               style={{ textAlign: "center" }}
