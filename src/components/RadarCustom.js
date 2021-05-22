@@ -24,6 +24,7 @@ export default function RadarCustom({ vaccine }) {
       }
       vacData.pop("total");
       vacData.pop("none_of_the_above");
+      console.log(vacData);
       setData(vacData);
     });
   });
@@ -33,8 +34,8 @@ export default function RadarCustom({ vaccine }) {
         <PolarGrid />
         <PolarAngleAxis dataKey="subject" />
         <PolarRadiusAxis />
-        <Radar dataKey="M" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
-        <Radar dataKey="F" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} />
+        <Radar dataKey="M" stroke="#39539E" fill="#9E292A" fillOpacity={0.6} />
+        <Radar dataKey="F" stroke="#5D84F4" fill="#ED6667" fillOpacity={0.6} />
       </RadarChart>
     </ResponsiveContainer>
   );

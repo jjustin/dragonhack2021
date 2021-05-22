@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { useState } from "react";
 import {
   BarChart,
   Bar,
@@ -9,6 +9,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { getRatingAverage } from "../services/data";
 
 const data = [
   {
@@ -55,14 +56,14 @@ const data = [
   },
 ];
 
-export default function DualBarChart() {
+export default function DualBarChart({ vaccine }) {
   const [data, setData] = useState(undefined);
-  getCounts("male", (males) => {
-    getCounts("female", (females) => {
+  getRatingAverage("male", (males) => {
+    getRatingAverage("female", (females) => {
       var vacData = [];
       for (const key in males[vaccine]) {
         vacData.push({
-          subject: key,
+          name: key,
           M: males[vaccine][key] / males[vaccine]["total"],
           F: females[vaccine][key] / females[vaccine]["total"],
         });
@@ -70,6 +71,7 @@ export default function DualBarChart() {
       vacData.pop("total");
       vacData.pop("none_of_the_above");
       setData(vacData);
+      console.log(vacData);
     });
   });
 
@@ -91,8 +93,8 @@ export default function DualBarChart() {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="pv" fill="#8884d8" background={{ fill: "#eee" }} />
-        <Bar dataKey="uv" fill="#82ca9d" />
+        <Bar dataKey="M" fill="#5D84F4" background={{ fill: "#eee" }} />
+        <Bar dataKey="F" fill="#ED6667" background={{ fill: "#eee" }} />
       </BarChart>
     </ResponsiveContainer>
   );
