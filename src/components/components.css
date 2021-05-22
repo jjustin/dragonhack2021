@@ -1,0 +1,17 @@
+.columnView {
+  justify-content: center;
+  flex-direction: column;
+  width: 30%;
+}
+
+.lineGraph {
+  margin: 2em;
+  height: 20em;
+  width: 80%;
+}
+
+.radarGraph {
+  margin: 2em;
+  height: 15em;
+  width: 80%;
+}

@@ -1,55 +1,24 @@
 import "./stats.css";
-import LineGraph from "../components/LineGraph";
-import RadarCustom from "../components/RadarCustom";
-import { getData } from "../services/data";
-import { useEffect, useState } from "react";
-import { Spin } from "antd";
+import VaxColumn from "../components/VaxColumn";
+import React, { useState } from "react";
+
+const vaccines = [
+  "Janssen / Johnson & Johnson",
+  "Comirnaty (Pfizer-BioNTech)",
+  "Moderna",
+  "Oxford-AstraZeneca",
+];
 
 export default function Stats() {
-  const [data, setData] = useState(undefined);
+  const [vacc1, setVacc1] = useState(vaccines[0]);
+  const [vacc2, setVacc2] = useState(vaccines[1]);
+  const [vacc3, setVacc3] = useState(vaccines[2]);
 
-  useEffect(() => {
-    if (!data) {
-      getData((r) => {
-        setData(r);
-      });
-    }
-  });
-  console.log(data);
-  if (!data) {
-    return <Spin className="loading" size="large" />;
-  }
   return (
     <div className="statsView">
-      <div className="lineGraph graph">
-        <LineGraph />
-      </div>
-      <div className="radarGraph graph">
-        <RadarCustom data={vaxxDistribution(data)} />
-      </div>
+      <VaxColumn vacc={vacc1} vaccines={vaccines} setVacc={setVacc1} />
+      <VaxColumn vacc={vacc2} vaccines={vaccines} setVacc={setVacc2} />
+      <VaxColumn vacc={vacc3} vaccines={vaccines} setVacc={setVacc3} />
     </div>
   );
-}
-
-function vaxxDistribution({ data }) {
-  var data = data.slice(1);
-  var out = {};
-  for (var entry of data) {
-    console.log(entry);
-    if (entry[4] == "No" || entry[32] == "Partially Completed") {
-      continue;
-    }
-
-    if (!out[entry[5]]) {
-      out[entry[5]] = 0;
-    }
-    out[entry[5]]++;
-  }
-
-  var x = Object.keys(out).map((k) => {
-    return { vaxx: k, count: out[k] };
-  });
-
-  console.log(x, out);
-  return x;
 }

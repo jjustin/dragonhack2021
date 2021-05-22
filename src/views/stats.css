@@ -1,25 +1,6 @@
 .statsView {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-}
-
-.lineGraph {
-  height: 40%;
-  width: 40%;
-  float: left;
-}
-
-.radarGraph {
-  height: 40%;
-  width: 40%;
-  overflow: hidden;
-}
-
-.loading {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  margin: 1em;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
 }
