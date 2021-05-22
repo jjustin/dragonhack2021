@@ -4,7 +4,7 @@ export default function Add() {
       title="survey"
       id="ss_widget_frame"
       allowfullscreen=""
-      src="http://trivialgroupstudios.surveysparrow.com/widget/Vaccination-Side-Effects-Survey/tt-7979c9?"
+      src="https://trivialgroupstudios.surveysparrow.com/widget/Vaccination-Side-Effects-Survey/tt-7979c9?"
       style={{
         transition: "none 0s ease 0s",
         background: "none transparent",
