@@ -11,9 +11,9 @@ export default function getDualColumnData(vaccine, males, females) {
     "Chills",
     "Headache",
     "Nausea",
-    "Pain at Point",
+    "Pain at point",
     "Fatigue",
-    "Body Aches",
+    "Body aches",
   ];
   for (const key of yesyes) {
     vacData.push({
