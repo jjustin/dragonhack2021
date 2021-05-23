@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "./landing.css";
+import { Link } from "react-router-dom";
 
 export default function LandingPage() {
   useEffect(() => {
@@ -36,21 +37,21 @@ export default function LandingPage() {
     <div class="container">
       <div class="split left">
         <h1>Contribute you data</h1>
-        <a href="/add" class="buttonLanding">
+        <Link to="/add" class="buttonLanding">
           Contribute
-        </a>
+        </Link>
       </div>
       <div class="split center">
         <h1>Predict your symptoms</h1>
-        <a href="/prediction" class="buttonLanding">
+        <Link to="/prediction" class="buttonLanding">
           Predict
-        </a>
+        </Link>
       </div>
       <div class="split right">
         <h1>Analyse statistical data</h1>
-        <a href="/stats" class="buttonLanding">
+        <Link to="/stats" class="buttonLanding">
           Analyse
-        </a>
+        </Link>
       </div>
     </div>
   );
