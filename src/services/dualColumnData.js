@@ -1,5 +1,3 @@
-import { getRatingAverage } from "./data";
-
 export default function getDualColumnData(vaccine, males, females) {
   console.log(vaccine, males, females);
   if (vaccine === undefined || vaccine === "Choose vaccine") {

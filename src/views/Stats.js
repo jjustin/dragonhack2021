@@ -14,10 +14,6 @@ const vaccines = [
 ];
 
 export default function Stats() {
-  const [vacc1, setVacc1] = useState("Choose vaccine");
-  const [vacc2, setVacc2] = useState("Choose vaccine");
-  const [vacc3, setVacc3] = useState("Choose vaccine");
-
   const [malesCount, setMalesCount] = useState(undefined);
   const [femalesCount, setFemalesCount] = useState(undefined);
   const [malesRatingAverage, setMalesRatingAverage] = useState(undefined);
@@ -29,14 +25,16 @@ export default function Stats() {
     femalesRatingAverage
   );
 
-  useEffect(() => {
-    if (malesRatingAverage === undefined)
-      getRatingAverage("male", setMalesRatingAverage);
-    if (malesCount === undefined) getCounts("male", setMalesCount);
-    if (femalesRatingAverage === undefined)
-      getRatingAverage("female", setFemalesRatingAverage);
-    if (femalesCount === undefined) getRatingAverage("female", setFemalesCount);
-  });
+  useEffect(
+    (mra, mc, fra, fc) => {
+      if (mra === undefined) getRatingAverage("male", setMalesRatingAverage);
+      if (mc === undefined) getCounts("male", setMalesCount);
+      if (fra === undefined)
+        getRatingAverage("female", setFemalesRatingAverage);
+      if (fc === undefined) getCounts("female", setFemalesCount);
+    },
+    [malesRatingAverage, malesCount, femalesRatingAverage, femalesCount]
+  );
 
   // Radar data
   const [data1, setData1] = useState({ vacc: "Choose vaccine" });

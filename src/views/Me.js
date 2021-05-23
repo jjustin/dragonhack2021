@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./me.css";
-import { getPercentage, getRatingAverage, getCounts } from "../services/data";
+import { getPercentage, getRatingAverage } from "../services/data";
 import { Spin } from "antd";
-import { List, Typography, Divider } from "antd";
+import { List } from "antd";
 
 export default function Me() {
   const [sex, setSex] = useState(undefined);
@@ -40,7 +40,7 @@ export default function Me() {
 
   function pretty_print() {
     var x = {};
-    if (chosenVaxx != "?") {
+    if (chosenVaxx !== "?") {
       x[chosenVaxx] = response[chosenVaxx];
     } else {
       x = response;

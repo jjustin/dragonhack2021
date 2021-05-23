@@ -1,5 +1,3 @@
-import { getCounts } from "./data";
-
 export default function getRadarData(vaccine, males, females) {
   if (vaccine === undefined || vaccine === "Choose vaccine") {
     return undefined;

@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import { readRemoteFile } from "react-papaparse";
 
 // Scripts for getting data from google sheets
