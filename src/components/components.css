@@ -1,7 +1,8 @@
 .columnView {
   justify-content: center;
   flex-direction: column;
-  width: 30%;
+  padding-top: 30px;
+  width: 48%;
 }
 
 .lineGraph {

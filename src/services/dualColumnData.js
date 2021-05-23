@@ -1,51 +1,43 @@
 import { getRatingAverage } from "./data";
 
-export default function getDualColumnData(vaccine, setData) {
-  if (vaccine == undefined || vaccine == "Choose vaccine") {
+export default function getDualColumnData(vaccine, males, females) {
+  console.log(vaccine, males, females);
+  if (vaccine === undefined || vaccine === "Choose vaccine") {
     return undefined;
   }
 
-  getRatingAverage("male", (males) => {
-    getRatingAverage("female", (females) => {
-      var vacData = [];
-      const yesyes = [
-        "Chills",
-        "Headache",
-        "Nausea",
-        "Pain at Point",
-        "Fatigue",
-        "Body Aches",
-      ];
-      for (const key of yesyes) {
-        vacData.push({
-          name: key,
-          M: males[vaccine][key],
-          F: females[vaccine][key],
-        });
-      }
-      setData(vacData);
-      console.log(vacData);
+  var vacData = [];
+  const yesyes = [
+    "Chills",
+    "Headache",
+    "Nausea",
+    "Pain at Point",
+    "Fatigue",
+    "Body Aches",
+  ];
+  for (const key of yesyes) {
+    vacData.push({
+      name: key,
+      M: males[vaccine][key] | 0,
+      F: females[vaccine][key] | 0,
     });
-  });
+  }
+  return vacData;
 }
 
-export function getFeverData(vaccine, setData) {
-  if (vaccine == undefined || vaccine == "Choose vaccine") {
+export function getFeverData(vaccine, males, females) {
+  if (vaccine === undefined || vaccine === "Choose vaccine") {
     return undefined;
   }
-  getRatingAverage("male", (males) => {
-    getRatingAverage("female", (females) => {
-      var vacData = [];
-      const yesyes = ["Fever"];
-      for (const key of yesyes) {
-        vacData.push({
-          name: key,
-          M: males[vaccine][key],
-          F: females[vaccine][key],
-        });
-      }
-      setData(vacData);
-      console.log(vacData);
+  var vacData = [];
+  const yesyes = ["Fever"];
+  for (const key of yesyes) {
+    vacData.push({
+      name: key,
+      M: males[vaccine][key] | 36,
+      F: females[vaccine][key] | 36,
     });
-  });
+  }
+  console.log(vacData);
+  return vacData;
 }

@@ -44,7 +44,10 @@ function App() {
               </Menu>
             </Header>
             <Layout className="site-layout">
-              <Content>
+              <Content
+                className="site-layout"
+                style={{ padding: "0 50px", marginTop: 64 }}
+              >
                 <div
                   className="site-layout-background"
                   style={{ textAlign: "center" }}

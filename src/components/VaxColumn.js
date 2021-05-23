@@ -14,7 +14,7 @@ export default function VaxColumn(props) {
     <Menu.Item key={v}>{v}</Menu.Item>
   ));
   const menu = <Menu onClick={handleMenuClick}>{menuItems}</Menu>;
-
+  console.log(props);
   return (
     <div className="columnView">
       <Dropdown overlay={menu}>
@@ -23,11 +23,30 @@ export default function VaxColumn(props) {
           <DownOutlined />
         </Button>
       </Dropdown>
-      <div className="lineGraph">
-        <DualBarChart data={props.dataDC} />
+      <div style={{ fontWeight: "bold", fontSize: "30px", paddingTop: "30px" }}>
+        Pain rating
       </div>
       <div className="lineGraph">
-        <DualBarChart data={props.dataFever} />
+        <DualBarChart
+          data={props.dataDC}
+          domain={[0, 5]}
+          rotation={0}
+          tickCount={6}
+        />
+      </div>
+      <div style={{ fontWeight: "bold", fontSize: "30px", paddingTop: "15px" }}>
+        Fever
+      </div>
+      <div className="lineGraph">
+        <DualBarChart
+          data={props.dataFever}
+          domain={[35, 38]}
+          rotation={0}
+          tickCount={4}
+        />
+      </div>
+      <div style={{ fontWeight: "bold", fontSize: "30px", paddingTop: "15px" }}>
+        Chance of symptoms
       </div>
       <div className="lineGraph">
         <RadarCustom data={props.dataRadar} />

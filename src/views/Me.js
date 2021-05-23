@@ -1,9 +1,111 @@
 import { useState } from "react";
 import "./me.css";
+import { getPercentage, getRatingAverage, getCounts } from "../services/data";
+import { Spin } from "antd";
+import { List, Typography, Divider } from "antd";
+
 export default function Me() {
   const [sex, setSex] = useState(undefined);
   const [age, setAge] = useState(undefined);
   const [covid, setCovid] = useState(undefined);
+  const [chosenVaxx, setVaxx] = useState(undefined);
+  const [response, setResponse] = useState(undefined);
+
+  function predictFor(sex, age, callback) {
+    getPercentage(sex, (percents) => {
+      getRatingAverage(sex, (avgs) => {
+        var data = {};
+        for (const vaxx in percents) {
+          data[vaxx] = {};
+          for (const v of [
+            "Headache",
+            "Fever",
+            "Fatigue",
+            "Chills",
+            "Nausea",
+            "Diarrhea",
+            "Pain at point",
+            "body_aches",
+          ]) {
+            data[vaxx][v] = {
+              percent: percents[vaxx][v],
+              pain: avgs[vaxx][v],
+            };
+          }
+        }
+        setResponse(data);
+      });
+    });
+  }
+
+  function pretty_print() {
+    var x = {};
+    if (chosenVaxx != "?") {
+      x[chosenVaxx] = response[chosenVaxx];
+    } else {
+      x = response;
+    }
+    return Object.keys(x).map((vaccine) => {
+      return (
+        <div key={vaccine} style={{ paddingBottom: "10px" }}>
+          <List
+            header={
+              <div style={{ fontSize: "30px" }}>
+                Using {vaccine} you can expect
+              </div>
+            }
+            dataSource={Object.keys(response[vaccine])}
+            renderItem={(k) => {
+              var { percent, pain } = response[vaccine][k];
+              percent = percent ?? 0;
+              pain = pain ?? 0;
+              if (percent < 0.02) return;
+              if (k === "Pain at point") k = "Pain at point of injection";
+              return (
+                <List.Item>
+                  {percentToText(percent)} chance of {painToText(pain, k)}{" "}
+                  {k.toLowerCase()}
+                </List.Item>
+              );
+            }}
+          ></List>
+        </div>
+      );
+    });
+  }
+
+  function percentToText(percent) {
+    if (percent < 0.2) {
+      return "Very low";
+    }
+    if (percent < 0.4) {
+      return "Low";
+    }
+    if (percent < 0.6) {
+      return "Moderate";
+    }
+    if (percent < 0.85) {
+      return "High";
+    }
+    return "Very high";
+  }
+
+  function painToText(p, problem) {
+    if (problem === "Diarrhea") {
+      return "";
+    }
+    if (problem === "Fever") {
+      return "~" + Math.round(p * 10) / 10 + "°C";
+    }
+
+    if (p < 2) {
+      return "weak";
+    }
+    if (p < 3.5) {
+      return "moderate";
+    }
+    return "painful";
+  }
 
   if (!sex) {
     return (
@@ -12,10 +114,10 @@ export default function Me() {
           What is your sex? 🚻
         </div>
         <div style={{ display: "flex" }}>
-          <div className="me-form-selector" onClick={() => setSex("Male")}>
+          <div className="me-form-selector" onClick={() => setSex("male")}>
             Male
           </div>
-          <div className="me-form-selector" onClick={() => setSex("Female")}>
+          <div className="me-form-selector" onClick={() => setSex("female")}>
             Female
           </div>
         </div>
@@ -74,7 +176,49 @@ export default function Me() {
       </div>
     );
   }
-  return <div></div>;
-}
+  if (chosenVaxx === undefined) {
+    return (
+      <div className="me-form-question">
+        <div style={{ fontSize: 30, marginBottom: "30px" }}>
+          Which type of vaccine will you get? 💉
+        </div>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div
+            className="me-form-selector wide"
+            onClick={() => setVaxx("Janssen / Johnson & Johnson")}
+          >
+            Janssen / Johnson & Johnson
+          </div>
+          <div
+            className="me-form-selector wide"
+            onClick={() => setVaxx("Comirnaty (Pfizer-BioNTech)")}
+          >
+            Comirnaty (Pfizer-BioNTech)
+          </div>
+          <div
+            className="me-form-selector wide"
+            onClick={() => setVaxx("Moderna")}
+          >
+            Moderna
+          </div>
+          <div
+            className="me-form-selector wide"
+            onClick={() => setVaxx("Oxford-AstraZeneca")}
+          >
+            Oxford-AstraZeneca
+          </div>
+          <div className="me-form-selector wide" onClick={() => setVaxx("?")}>
+            I don't know yet
+          </div>
+        </div>
+      </div>
+    );
+  }
 
-function predictFor(sex, age, covid) {}
+  if (response === undefined) {
+    predictFor(sex, age);
+    return <Spin className="loading" size="large" />;
+  }
+
+  return <div className="me-form-question2">{pretty_print(response)}</div>;
+}

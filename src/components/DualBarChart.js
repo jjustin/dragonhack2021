@@ -10,11 +10,11 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-export default function DualBarChart({ data }) {
+export default function DualBarChart({ data, domain, rotation, tickCount }) {
   return (
     <ResponsiveContainer width="100%" height="100%">
       <BarChart
-        width={500}
+        width={700}
         height={300}
         data={data}
         margin={{
@@ -25,8 +25,8 @@ export default function DualBarChart({ data }) {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
+        <XAxis dataKey="name" interval={0} angle={rotation} />
+        <YAxis domain={domain} tickCount={tickCount} />
         <Tooltip />
         <Legend />
         <Bar dataKey="M" fill="#5D84F4" />
