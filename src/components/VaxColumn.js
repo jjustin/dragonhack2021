@@ -40,9 +40,9 @@ export default function VaxColumn(props) {
       <div className="lineGraph">
         <DualBarChart
           data={props.dataFever}
-          domain={[35, 38]}
+          domain={[36, 40]}
           rotation={0}
-          tickCount={4}
+          tickCount={5}
         />
       </div>
       <div style={{ fontWeight: "bold", fontSize: "30px", paddingTop: "15px" }}>
