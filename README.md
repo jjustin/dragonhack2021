@@ -1,7 +1,10 @@
 # DragonHack 2021: VaxxHub
+Dragonhack 2021 second place winner  
+HYCU's "Most useful hack" winner
+
 Presented to you by **Trivial Group**: Janez Justin, Frenk Dragar and Martin Jurkovič
 
-# Demo
+## Demo
 [dragonhack2021.trivial.group](https://dragonhack2021.trivial.group/)
 
 ## Description
