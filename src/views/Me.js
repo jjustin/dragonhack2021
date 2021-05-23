@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./me.css";
 import { getPercentage, getRatingAverage } from "../services/data";
 import { Spin } from "antd";
@@ -10,32 +10,44 @@ export default function Me() {
   const [covid, setCovid] = useState(undefined);
   const [chosenVaxx, setVaxx] = useState(undefined);
   const [response, setResponse] = useState(undefined);
+  const [avgData, setAvgData] = useState(undefined);
+  const [percentsData, setPercentsData] = useState(undefined);
+  console.log(percentsData, avgData);
+  useEffect(() => {
+    if (sex !== undefined) {
+      if (percentsData === undefined) {
+        getPercentage(sex, (r) => {
+          setPercentsData(r);
+        });
+      } else if (avgData === undefined) {
+        getRatingAverage(sex, (r) => {
+          setAvgData(r);
+        });
+      }
+    }
+  });
 
-  function predictFor(sex, age, callback) {
-    getPercentage(sex, (percents) => {
-      getRatingAverage(sex, (avgs) => {
-        var data = {};
-        for (const vaxx in percents) {
-          data[vaxx] = {};
-          for (const v of [
-            "Headache",
-            "Fever",
-            "Fatigue",
-            "Chills",
-            "Nausea",
-            "Diarrhea",
-            "Pain at point",
-            "body_aches",
-          ]) {
-            data[vaxx][v] = {
-              percent: percents[vaxx][v],
-              pain: avgs[vaxx][v],
-            };
-          }
-        }
-        setResponse(data);
-      });
-    });
+  function predictFor() {
+    var data = {};
+    for (const vaxx in percentsData) {
+      data[vaxx] = {};
+      for (const v of [
+        "Headache",
+        "Fever",
+        "Fatigue",
+        "Chills",
+        "Nausea",
+        "Diarrhea",
+        "Pain at point",
+        "body_aches",
+      ]) {
+        data[vaxx][v] = {
+          percent: percentsData[vaxx][v],
+          pain: avgData[vaxx][v],
+        };
+      }
+    }
+    setResponse(data);
   }
 
   function pretty_print() {
@@ -216,7 +228,7 @@ export default function Me() {
   }
 
   if (response === undefined) {
-    predictFor(sex, age);
+    if (avgData !== undefined && percentsData !== undefined) predictFor();
     return <Spin className="loading" size="large" />;
   }
 
