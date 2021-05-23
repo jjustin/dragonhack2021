@@ -1,0 +1,197 @@
+:root {
+  --container-bg-color: #333;
+  --left-bg-color: rgba(223, 39, 39, 0.7);
+  --left-button-hover-color: rgba(161, 11, 11, 0.3);
+  --center-bg-color: rgba(43, 43, 43, 0.8);
+  --center-button-hover-color: rgba(92, 92, 92, 0.3);
+  --right-bg-color: rgba(223, 39, 39, 0.7);
+  --right-button-hover-color: rgba(161, 11, 11, 0.3);
+  --hover-width: 50%;
+  --other-width: 25%;
+  --speed: 800ms;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-size: 3rem;
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.buttonLanding {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  height: 3.5rem;
+  padding-top: 0.8rem;
+  width: 15rem;
+  text-align: center;
+  color: #fff;
+  border: #fff solid 0.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  transform: translateX(-50%);
+}
+
+.buttonLanding:hover {
+  color: #fff;
+  border: #fff solid 0.2rem;
+}
+
+.split.left .buttonLanding:hover {
+  border-color: var(--left-button-hover-color);
+}
+
+.split.right .buttonLanding:hover {
+  border-color: var(--right-button-hover-color);
+}
+
+.split.center .buttonLanding:hover {
+  border-color: var(--center-button-hover-color);
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--container-bg-color);
+}
+
+.split {
+  position: absolute;
+  width: 33.33%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.split.left {
+  z-index: 5;
+  left: 0;
+  background-color: var(--left-button-hover-color), #6db3f2;
+  background: url("https://www.businessworldit.com/wp-content/uploads/2018/02/contribute.png")
+    center center no-repeat;
+  box-shadow: inset 0 0 0 2000px var(--left-bg-color);
+  background-size: cover;
+}
+
+.split.left:before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+}
+
+.split.center {
+  left: 33.33%;
+  background: url("https://images.idgesg.net/images/article/2018/04/future_forecast_prediction_speculation_fortune_telling_crystal_ball_yeshi_kangrang_cc0_via_unsplash_1200x800-100754669-large.jpg")
+    center center no-repeat;
+  box-shadow: inset 0 0 0 2000px var(--center-bg-color);
+  background-size: cover;
+}
+
+.split.center:before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+}
+
+.split.right {
+  right: 0;
+  background: url("https://image.ibb.co/m3ZbRb/programmer.png") center center
+    no-repeat;
+  box-shadow: inset 0 0 0 2000px var(--right-bg-color);
+  background-size: cover;
+}
+
+.split.right:before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+}
+
+.split.left,
+.split.center,
+.split.right,
+.split.right:before,
+.split.center:before,
+.split.left:before {
+  transition: var(--speed) all ease-in-out;
+}
+
+.hover-left .left {
+  width: var(--hover-width);
+  z-index: 5;
+}
+.hover-left .right {
+  width: var(--other-width);
+}
+.hover-left .center {
+  left: var(--hover-width);
+  width: var(--other-width);
+}
+
+.hover-left .right:before .center:before {
+  z-index: 2;
+}
+
+.hover-right .right {
+  width: var(--hover-width);
+}
+
+.hover-right .center {
+  left: var(--other-width);
+  width: var(--other-width);
+}
+.hover-right .left {
+  width: var(--other-width);
+}
+
+.hover-center .center {
+  left: var(--other-width);
+  width: var(--hover-width);
+  z-index: 5;
+}
+.hover-center .left {
+  width: var(--other-width);
+}
+.hover-center .right {
+  width: var(--other-width);
+}
+
+.hover-right .left:before .center:before {
+  z-index: 2;
+}
+
+@media (max-width: 800px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .button {
+    width: 12rem;
+  }
+}
+
+@media (max-height: 700px) {
+  .button {
+    top: 70%;
+  }
+}
