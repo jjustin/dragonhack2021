@@ -62,7 +62,7 @@ export function getRatingAverage(sex, cb) {
         if (!resp[vacc][data[0][ix]]) {
           resp[vacc][data[0][ix]] = 0;
         }
-        resp[vacc][data[0][ix]] += parseFloat(data[line][ix]);
+        resp[vacc][data[0][ix]] += parseFloat(data[line][ix].replace(",", "."));
       }
     }
 

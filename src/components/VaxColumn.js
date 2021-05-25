@@ -14,7 +14,7 @@ export default function VaxColumn(props) {
     <Menu.Item key={v}>{v}</Menu.Item>
   ));
   const menu = <Menu onClick={handleMenuClick}>{menuItems}</Menu>;
-  console.log(props);
+
   return (
     <div className="columnView">
       <Dropdown overlay={menu}>

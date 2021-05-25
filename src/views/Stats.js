@@ -18,23 +18,22 @@ export default function Stats() {
   const [femalesCount, setFemalesCount] = useState(undefined);
   const [malesRatingAverage, setMalesRatingAverage] = useState(undefined);
   const [femalesRatingAverage, setFemalesRatingAverage] = useState(undefined);
-  console.log(
-    malesCount,
-    femalesCount,
-    malesRatingAverage,
-    femalesRatingAverage
-  );
 
-  useEffect(
-    (mra, mc, fra, fc) => {
-      if (mra === undefined) getRatingAverage("male", setMalesRatingAverage);
-      if (mc === undefined) getCounts("male", setMalesCount);
-      if (fra === undefined)
-        getRatingAverage("female", setFemalesRatingAverage);
-      if (fc === undefined) getCounts("female", setFemalesCount);
-    },
-    [malesRatingAverage, malesCount, femalesRatingAverage, femalesCount]
-  );
+  useEffect(() => {
+    if (malesRatingAverage === undefined)
+      getRatingAverage("male", setMalesRatingAverage);
+    else if (malesCount === undefined) getCounts("male", setMalesCount);
+    else if (femalesRatingAverage === undefined)
+      getRatingAverage("female", setFemalesRatingAverage);
+    else if (femalesCount === undefined) getCounts("female", setFemalesCount);
+    console.log(
+      "statsdata",
+      malesRatingAverage,
+      malesCount,
+      femalesRatingAverage,
+      femalesCount
+    );
+  }, [malesRatingAverage, malesCount, femalesRatingAverage, femalesCount]);
 
   // Radar data
   const [data1, setData1] = useState({ vacc: "Choose vaccine" });
@@ -44,7 +43,7 @@ export default function Stats() {
   function getData(vacc) {
     var radar = getRadarData(vacc, malesCount, femalesCount);
     var dc = getDualColumnData(vacc, malesRatingAverage, femalesRatingAverage);
-    var fev = getFeverData(vacc, malesCount, femalesCount);
+    var fev = getFeverData(vacc, malesRatingAverage, femalesRatingAverage);
     return { vacc, radar, dc, fev };
   }
 
