@@ -26,13 +26,6 @@ export default function Stats() {
     else if (femalesRatingAverage === undefined)
       getRatingAverage("female", setFemalesRatingAverage);
     else if (femalesCount === undefined) getCounts("female", setFemalesCount);
-    console.log(
-      "statsdata",
-      malesRatingAverage,
-      malesCount,
-      femalesRatingAverage,
-      femalesCount
-    );
   }, [malesRatingAverage, malesCount, femalesRatingAverage, femalesCount]);
 
   // Radar data

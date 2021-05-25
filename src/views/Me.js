@@ -12,7 +12,7 @@ export default function Me() {
   const [response, setResponse] = useState(undefined);
   const [avgData, setAvgData] = useState(undefined);
   const [percentsData, setPercentsData] = useState(undefined);
-  console.log(percentsData, avgData);
+
   useEffect(() => {
     if (sex !== undefined) {
       if (percentsData === undefined) {
