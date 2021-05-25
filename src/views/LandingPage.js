@@ -35,24 +35,15 @@ export default function LandingPage() {
 
   return (
     <div class="container">
-      <div class="split left">
+      <Link to="/add" class="split left buttonLanding">
         <h1>Contribute you data</h1>
-        <Link to="/add" class="buttonLanding">
-          Contribute
-        </Link>
-      </div>
-      <div class="split center">
+      </Link>
+      <Link to="/prediction" class="split center buttonLanding">
         <h1>Predict your symptoms</h1>
-        <Link to="/prediction" class="buttonLanding">
-          Predict
-        </Link>
-      </div>
-      <div class="split right">
+      </Link>
+      <Link to="/stats" class="split right buttonLanding">
         <h1>Analyse statistical data</h1>
-        <Link to="/stats" class="buttonLanding">
-          Analyse
-        </Link>
-      </div>
+      </Link>
     </div>
   );
 }

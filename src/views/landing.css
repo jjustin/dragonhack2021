@@ -8,7 +8,7 @@
   --right-button-hover-color: rgba(161, 11, 11, 0.3);
   --hover-width: 50%;
   --other-width: 25%;
-  --speed: 800ms;
+  --speed: 600ms;
 }
 
 html,
@@ -30,41 +30,11 @@ h1 {
   top: 20%;
   transform: translateX(-50%);
   white-space: nowrap;
+  transition: var(--speed) all ease-in-out;
 }
 
-.buttonLanding {
-  display: block;
-  position: absolute;
-  left: 50%;
-  top: 40%;
-  height: 3.5rem;
-  padding-top: 0.8rem;
-  width: 15rem;
-  text-align: center;
-  color: #fff;
-  border: #fff solid 0.2rem;
-  font-size: 1rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-decoration: none;
-  transform: translateX(-50%);
-}
-
-.buttonLanding:hover {
-  color: #fff;
-  border: #fff solid 0.2rem;
-}
-
-.split.left .buttonLanding:hover {
-  border-color: var(--left-button-hover-color);
-}
-
-.split.right .buttonLanding:hover {
-  border-color: var(--right-button-hover-color);
-}
-
-.split.center .buttonLanding:hover {
-  border-color: var(--center-button-hover-color);
+.buttonLanding:hover > h1 {
+  font-size: 3.3rem;
 }
 
 .container {
@@ -195,4 +165,8 @@ h1 {
   .button {
     top: 70%;
   }
+}
+
+.split:hover {
+  box-shadow: none;
 }
